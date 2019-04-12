@@ -1,6 +1,6 @@
 import {
   ApolloGatewayMixin,
-  GraphQLGatewayMixin,
+  // GraphQLGatewayMixin,
   GatewayMixin
 } from '../index';
 
@@ -14,9 +14,9 @@ describe('Test mixnis', () => {
   };
 
   it('Should export ApolloGatewayMixin & GraphQLGatewayMixin & GatewayMixin', () => {
-    expect.assertions(3);
+    expect.assertions(2);
     expect(ApolloGatewayMixin).toBeInstanceOf(Function);
-    expect(GraphQLGatewayMixin).toBeInstanceOf(Function);
+    // expect(GraphQLGatewayMixin).toBeInstanceOf(Function);
     expect(GatewayMixin).toBeInstanceOf(Function);
   });
 

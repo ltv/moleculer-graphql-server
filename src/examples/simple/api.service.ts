@@ -8,8 +8,6 @@ const schemaBuilder = async ({
   broker,
   service
 }: SchemaBuilderContext): Promise<GraphQLSchema> => {
-  console.log('[schemaBuilder] > broker: ', this.broker);
-  console.log('[schemaBuilder] > name: ', service.name);
   const schemaFromCache = await broker.cacher.get(
     `graphile.schema.${service.name}`
   );
@@ -29,6 +27,6 @@ const schemaBuilder = async ({
     port: 8080
   }
 })
-class ApiService {}
+class ApiService { }
 
 export = ApiService;

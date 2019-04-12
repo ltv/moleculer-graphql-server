@@ -1,0 +1,23 @@
+#import './types/test.gql'
+#import './types/user.gql'
+#import './types/cus-res.gql'
+
+type Query {
+  hello: TestObj
+  defaultResolver: String!
+  provideOnlyType: String!
+  customType: String!
+  allCusRes: [CustomResponse!]!
+}
+
+input AddInput {
+  num1: Int!
+  num2: Int!
+}
+
+type Mutation {
+  createHelloWithNewName: TestObj
+  createUser(id: Int!, name: String!): User!
+  addFromOtherService(input: AddInput!): Int!
+  addCusRes: CustomResponse!
+}

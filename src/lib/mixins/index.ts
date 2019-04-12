@@ -20,4 +20,5 @@ export function GatewayMixin(options: GatewayMixinOptions): ServiceSchema {
 }
 
 export * from './apollo.mixin';
-export * from './graphql.mixin';
+// export * from './graphql.mixin';
+export * from './service.mixin';

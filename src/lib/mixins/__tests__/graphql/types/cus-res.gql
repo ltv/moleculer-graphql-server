@@ -1,0 +1,5 @@
+#import './user.gql'
+
+type CustomResponse {
+  users: [User!]
+}

@@ -1,7 +1,7 @@
 import { renderPlaygroundPage } from '@apollographql/graphql-playground-html';
 import accept from 'accept';
 import { ApolloServerBase } from 'apollo-server-core';
-import { processRequest } from 'graphql-upload';
+// import { processRequest } from 'graphql-upload'; Not providing graphql-upload at this moment
 import { moleculerApollo } from './MoleculerApollo';
 
 function send(
@@ -32,34 +32,22 @@ export class ApolloServer extends ApolloServerBase {
 
   // Prepares and returns an async function that can be used to handle
   // GraphQL requests.
-  public createHandler({
-    path = '/graphql',
-    disableHealthCheck = null,
-    onHealthCheck = null
-  } = {}): any {
+  public createHandler(options: { path?: string } = {}): any {
+    const { path = '/graphql' } = options;
     const promiseWillStart = this.willStart();
     return async (req, res) => {
-      this.graphqlPath = path || '/graphql';
+      this.graphqlPath = path;
 
       await promiseWillStart;
 
       // If file uploads are detected, prepare them for easier handling with
       // the help of `graphql-upload`.
-      if (this.uploadsConfig) {
-        const contentType = req.headers['content-type'];
-        if (contentType && contentType.startsWith('multipart/form-data')) {
-          req.filePayload = await processRequest(req, res, this.uploadsConfig);
-        }
-      }
-
-      // If health checking is enabled, trigger the `onHealthCheck`
-      // function when the health check URL is requested.
-      if (
-        !disableHealthCheck &&
-        req.url === '/.well-known/apollo/server-health'
-      ) {
-        return (this as any).handleHealthCheck({ req, res, onHealthCheck });
-      }
+      // if (this.uploadsConfig) {
+      //   const contentType = req.headers['content-type'];
+      //   if (contentType && contentType.startsWith('multipart/form-data')) {
+      //     req.filePayload = await processRequest(req, res, this.uploadsConfig);
+      //   }
+      // }
 
       // If the `playgroundOptions` are set, register a `graphql-playground` instance
       // (not available in production) that is then used to handle all

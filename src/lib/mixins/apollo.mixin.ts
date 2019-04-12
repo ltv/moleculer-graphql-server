@@ -90,9 +90,7 @@ export function ApolloGatewayMixin(
       if (!shouldUpdateSchema) {
         return;
       }
-      this.logger.info(
-        '♻ Recreate Apollo GraphQL server and regenerate GraphQL schema...'
-      );
+      this.logger.info('♻ Recreate Apollo GraphQL server and regenerate GraphQL schema...');
       try {
         const services = this.broker.registry.getServiceList({
           withActions: true
@@ -105,13 +103,13 @@ export function ApolloGatewayMixin(
           context: ({ req, connection }) => {
             return req
               ? {
-                  ctx: req.$ctx,
-                  service: req.$service,
-                  params: req.$params
-                }
+                ctx: req.$ctx,
+                service: req.$service,
+                params: req.$params
+              }
               : {
-                  service: connection.$service
-                };
+                service: connection.$service
+              };
           },
           subscriptions: {
             onConnect: connectionParams => ({
@@ -243,7 +241,7 @@ export function ApolloGatewayMixin(
 
     async started(): Promise<any> {
       this.logger.info(
-        `🚀 GraphQL server is available at ${mixinOptions.routeOptions.path}`
+        `🚀 Apollo GraphQL server is available at ${this.schema.name}.${mixinOptions.routeOptions.path}`
       );
       return true;
     }

@@ -1,6 +1,4 @@
-import { ApolloLink } from 'apollo-link';
 import { GraphQLSchema } from 'graphql';
-import { MoleculerLink } from '../MoleculerLink';
 import { SchemaBuilderContext } from '../utils';
 
 export interface GatewayMixinOptions {

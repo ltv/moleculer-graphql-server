@@ -13,12 +13,6 @@ export function moleculerApollo(options): any {
     throw new Error('Apollo Server requires options.');
   }
 
-  if (arguments.length > 1) {
-    throw new Error(
-      `Apollo Server expects exactly one argument, got ${arguments.length}`
-    );
-  }
-
   return async function graphqlHandler(req, res): Promise<any> {
     let query;
     try {
@@ -46,11 +40,7 @@ export function moleculerApollo(options): any {
         setHeaders(res, error.headers);
       }
 
-      if (!error.statusCode) {
-        error.statusCode = 500;
-      }
-
-      res.statusCode = error.statusCode || error.code || 500;
+      res.statusCode = 500; // error.statusCode || error.code || 500
       res.end(error.message);
 
       return undefined;

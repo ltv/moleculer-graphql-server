@@ -41,5 +41,10 @@
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules/**"],
-  "compileOnSave": false
+  "compileOnSave": false,
+  "plugins": [
+    {
+      "name": "@divyenduz/ts-graphql-plugin"
+    }
+  ]
 }

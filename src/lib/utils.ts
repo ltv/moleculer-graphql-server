@@ -19,9 +19,7 @@ export interface CreateRemoteSchemaOptions {
 export async function createRemoteSchema(options: CreateRemoteSchemaOptions) {
   const { broker, service, schemaBuilder } = options;
   const link = new MoleculerLink({ broker, serviceName: service.name });
-  const schema = schemaBuilder
-    ? await schemaBuilder({ broker, service, link })
-    : await introspectSchema(link);
+  const schema = schemaBuilder ? await schemaBuilder({ broker, service, link }) : await introspectSchema(link);
   return makeRemoteExecutableSchema({
     schema,
     link
